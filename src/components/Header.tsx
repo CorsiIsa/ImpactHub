@@ -13,7 +13,6 @@ export default function Header() {
       width: '100%',
       height: 100,
       backgroundColor: '#001C30',
-      marginTop:30,
     },
     text:{
         marginTop: 15,
