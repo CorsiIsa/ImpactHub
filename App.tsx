@@ -1,19 +1,8 @@
-import { StyleSheet, View } from 'react-native';
-import { FormEndereco } from './src/screens/FormEndereco';
+import 'react-native-gesture-handler';
+import Routes from './src/routes/Index';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <FormEndereco />
-    </View>
+    <Routes />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

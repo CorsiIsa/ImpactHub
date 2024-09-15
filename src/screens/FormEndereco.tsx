@@ -1,8 +1,15 @@
+import { StackNavigationProp } from '@react-navigation/stack';
 import axios from 'axios';
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { RootStackParamsList } from '../types/navigation';
 
-export function FormEndereco() {
+type FormCadastroScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'FormEndereco'>
+
+type Props = {
+  navigation: FormCadastroScreenNavigationProp,
+}
+export default function FormEndereco({ navigation}: Props) {
     const [cep, setCep] = useState('');
     const [logradouro, setLogradouro] = useState('');
     const [bairro, setBairro] = useState('');
@@ -36,65 +43,97 @@ export function FormEndereco() {
             }
         }
     };
-
+    
     return (
-        <View style={styles.container}>
-            <Text style={styles.label}>CEP:</Text>
-            <TextInput
-                style={styles.input}
-                value={cep}
-                onChangeText={handleCepChange}
-                placeholder="Digite o CEP"
-                keyboardType="numeric"
-                maxLength={8}
-            />
-            <Text style={styles.label}>Logradouro:</Text>
-            <TextInput
-                style={styles.input}
-                value={logradouro}
-                editable={false}
-            />
-            <Text style={styles.label}>Bairro:</Text>
-            <TextInput
-                style={styles.input}
-                value={bairro}
-                editable={false}
-            />
-            <Text style={styles.label}>Cidade:</Text>
-            <TextInput
-                style={styles.input}
-                value={cidade}
-                editable={false}
-            />
-            <Text style={styles.label}>Estado:</Text>
-            <TextInput
-                style={styles.input}
-                value={estado}
-                editable={false}
-            />
-            {error ? <Text style={styles.error}>{error}</Text> : null}
-        </View>
+        <SafeAreaView style={styles.container}>
+            <ScrollView>
+                <Text style={styles.titulo}>Cadastro</Text>
+                <Text style={styles.label}>Nome Empresa:</Text>
+                <TextInput
+                    style={styles.input}
+                />
+                <Text style={styles.label}>CNPJ:</Text>
+                <TextInput
+                    style={styles.input}
+                />
+                <Text style={styles.label}>Inscrição Estadual:</Text>
+                <TextInput
+                    style={styles.input}
+                />
+                <Text style={styles.label}>Razão Social:</Text>
+                <TextInput
+                    style={styles.input}
+                />
+                <Text style={styles.label}>CEP:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={cep}
+                    onChangeText={handleCepChange}
+                    keyboardType="numeric"
+                    maxLength={8}
+                />
+                <Text style={styles.label}>Logradouro:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={logradouro}
+                />
+                <Text style={styles.label}>Bairro:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={bairro}
+                />
+                <Text style={styles.label}>Cidade:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={cidade}
+                />
+                <Text style={styles.label}>Estado:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={estado}
+                />
+                <Button title='Cadastrar' onPress={() => navigation.navigate('Home')} />
+                {error ? <Text style={styles.error}>{error}</Text> : null}
+            </ScrollView>        
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        padding: 16,
-        backgroundColor: '#fff',
+        marginTop: 30,
+        paddingHorizontal: 8,
+        backgroundColor: '#176B87',
+        flex:1,
+        width:'100%'
     },
     label: {
         fontSize: 16,
-        marginBottom: 8,
+        fontWeight: 'bold',
+        color: '#DAFFFB',
+        paddingHorizontal: 4,
+        marginLeft: 8,
     },
     input: {
-        height: 40,
-        borderColor: '#ddd',
+        height: 60,
+        width: 400,
         borderWidth: 1,
-        marginBottom: 16,
+        backgroundColor: '#ffffff',
+        borderColor: '#D9D9D9',
+        borderRadius: 8,
         paddingHorizontal: 8,
+        justifyContent: 'center',
+        marginLeft: 8,
+        marginBottom: 20,
     },
     error: {
         color: 'red',
         marginTop: 10,
     },
+    titulo:{
+        color: '#001C30',
+        fontSize:50,
+        textAlign:'center',
+        marginBottom:20,
+    }
 });
