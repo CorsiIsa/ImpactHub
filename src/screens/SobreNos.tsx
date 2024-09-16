@@ -1,7 +1,8 @@
-import { Text } from "react-native";
-
+import { Text, View } from "react-native";
 export default function SobreNos(){
     return(
-        <Text>Sobre Nos</Text>
+        <View>
+            <Text>Sobre nos</Text>
+        </View>
     )
 }
